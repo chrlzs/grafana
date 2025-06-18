@@ -465,7 +465,7 @@
       },
       "targets": [
         {
-          "expr": "(ifOperStatus=~\"up\")",
+          "expr": "(ifOperStatus=\"up\")",
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
