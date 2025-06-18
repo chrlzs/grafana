@@ -1,0 +1,138 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Home Lab Overview",
+    "timezone": "browser",
+    "schemaVersion": 36,
+    "version": 1,
+    "refresh": "60s",
+    "templating": {
+      "list": [
+        {
+          "name": "job",
+          "type": "query",
+          "datasource": "Prometheus",
+          "query": "label_values(job)",
+          "regex": "",
+          "includeAll": true,
+          "multi": true,
+          "allValue": ".*",
+          "label": "Job Filter"
+        },
+        {
+          "name": "instance",
+          "type": "query",
+          "datasource": "Prometheus",
+          "query": "label_values(instance)",
+          "regex": "",
+          "includeAll": true,
+          "multi": true,
+          "allValue": ".*",
+          "label": "Instance Filter"
+        }
+      ]
+    },
+    "panels": [
+      {
+        "type": "graph",
+        "title": "CPU Usage %",
+        "targets": [
+          {
+            "expr": "100 - avg by(instance)(rate(node_cpu_seconds_total{mode=\"idle\",job=~\"$job\"}[5m])) * 100",
+            "intervalFactor": 2,
+            "legendFormat": "{{instance}}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"x":0,"y":0,"w":12,"h":6}
+      },
+      {
+        "type": "graph",
+        "title": "Memory Usage %",
+        "targets": [
+          {
+            "expr": "(node_memory_MemTotal_bytes{job=~\"$job\"} - node_memory_MemAvailable_bytes{job=~\"$job\"}) / node_memory_MemTotal_bytes{job=~\"$job\"} * 100",
+            "intervalFactor": 2,
+            "legendFormat": "{{instance}}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"x":12,"y":0,"w":12,"h":6}
+      },
+      {
+        "type": "graph",
+        "title": "Disk Usage % (root)",
+        "targets": [
+          {
+            "expr": "(node_filesystem_size_bytes{mountpoint=\"/\",job=~\"$job\"} - node_filesystem_free_bytes{mountpoint=\"/\",job=~\"$job\"}) / node_filesystem_size_bytes{mountpoint=\"/\",job=~\"$job\"} * 100",
+            "intervalFactor": 2,
+            "legendFormat": "{{instance}}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"x":0,"y":6,"w":12,"h":6}
+      },
+      {
+        "type": "graph",
+        "title": "Uptime (s)",
+        "targets": [
+          {
+            "expr": "node_time_seconds{job=~\"$job\"} - node_boot_time_seconds{job=~\"$job\"}",
+            "legendFormat": "{{instance}}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"x":12,"y":6,"w":12,"h":6}
+      },
+      {
+        "type": "graph",
+        "title": "Interface Traffic - In",
+        "targets": [
+          {
+            "expr": "rate(ifHCInOctets{job=~\"$job\",instance=~\"$instance\"}[5m])",
+            "legendFormat": "{{instance}} / {{device}}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"x":0,"y":12,"w":12,"h":6}
+      },
+      {
+        "type": "graph",
+        "title": "Interface Traffic - Out",
+        "targets": [
+          {
+            "expr": "rate(ifHCOutOctets{job=~\"$job\",instance=~\"$instance\"}[5m])",
+            "legendFormat": "{{instance}} / {{device}}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"x":12,"y":12,"w":12,"h":6}
+      },
+      {
+        "type": "graph",
+        "title": "Prometheus TSDB Head Series",
+        "targets": [
+          {
+            "expr": "prometheus_tsdb_head_series",
+            "legendFormat": "series",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"x":0,"y":18,"w":12,"h":6}
+      },
+      {
+        "type": "graph",
+        "title": "Prometheus Scrape Duration (avg)",
+        "targets": [
+          {
+            "expr": "rate(prometheus_scrape_duration_seconds_sum[5m]) / rate(prometheus_scrape_duration_seconds_count[5m])",
+            "legendFormat": "{{job}}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"x":12,"y":18,"w":12,"h":6}
+      }
+    ]
+  },
+  "overwrite": false
+}
