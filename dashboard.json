@@ -72,7 +72,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Palo Alto (Firewall)"
+                "value": "1 - Firewall (Palo Alto)"
               }
             ]
           },
@@ -84,7 +84,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Plex (Ubuntu)"
+                "value": "216 - Plex (Ubuntu)"
               }
             ]
           },
@@ -96,7 +96,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Media Storage (Buffalo)"
+                "value": "215 - Media Storage (Buffalo)"
               }
             ]
           },
@@ -108,7 +108,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "NAS-Boy [Dev] (Synology)"
+                "value": "250 - NAS-Boy [Dev] (Synology)"
               }
             ]
           },
@@ -120,7 +120,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Lil Nas [Backup] (Synology)"
+                "value": "253 - Lil Nas [Backup] (Synology)"
               }
             ]
           },
@@ -132,7 +132,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Prometheus (Pi)"
+                "value": "251 - Prometheus (Ubuntu)"
               }
             ]
           },
@@ -144,7 +144,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Switch (Juniper)"
+                "value": "13 - Switch (Juniper)"
               }
             ]
           }
