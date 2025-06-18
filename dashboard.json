@@ -99,11 +99,38 @@
           "expr": "up{job=~\"node|buffalo-nas|juniper-ex2200|paloalto|synology-nas\"}",
           "format": "time_series",
           "interval": "",
-          "legendFormat": "{{friendlyName}}",
+          "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
       "title": "Device Status",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "10.1.1.1": "Palo Alto Firewall",
+              "10.1.1.13": "Juniper EX2200 Switch",
+              "10.1.1.215": "Buffalo NAS",
+              "10.1.1.216": "Home Server",
+              "10.1.1.250": "Synology NAS (Primary)",
+              "10.1.1.251": "Prometheus Server",
+              "10.1.1.253": "Synology NAS (Backup)",
+              "10.1.1.251:9100": "Prometheus Server"
+            }
+          }
+        }
+      ],
       "type": "stat"
     },
     {
@@ -183,14 +210,41 @@
       },
       "targets": [
         {
-          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
+          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100",
           "format": "time_series",
           "interval": "",
-          "legendFormat": "{{friendlyName}}",
+          "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
       "title": "CPU Usage %",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "10.1.1.1": "Palo Alto Firewall",
+              "10.1.1.13": "Juniper EX2200 Switch",
+              "10.1.1.215": "Buffalo NAS",
+              "10.1.1.216": "Home Server",
+              "10.1.1.250": "Synology NAS (Primary)",
+              "10.1.1.251": "Prometheus Server",
+              "10.1.1.253": "Synology NAS (Backup)",
+              "10.1.1.251:9100": "Prometheus Server"
+            }
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -273,11 +327,38 @@
           "expr": "(node_memory_MemTotal_bytes - node_memory_MemFree_bytes - node_memory_Buffers_bytes - node_memory_Cached_bytes) / node_memory_MemTotal_bytes * 100",
           "format": "time_series",
           "interval": "",
-          "legendFormat": "{{friendlyName}}",
+          "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
       "title": "Memory Usage %",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "10.1.1.1": "Palo Alto Firewall",
+              "10.1.1.13": "Juniper EX2200 Switch",
+              "10.1.1.215": "Buffalo NAS",
+              "10.1.1.216": "Home Server",
+              "10.1.1.250": "Synology NAS (Primary)",
+              "10.1.1.251": "Prometheus Server",
+              "10.1.1.253": "Synology NAS (Backup)",
+              "10.1.1.251:9100": "Prometheus Server"
+            }
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -359,18 +440,45 @@
           "expr": "irate(node_network_receive_bytes_total[5m])",
           "format": "time_series",
           "interval": "",
-          "legendFormat": "{{friendlyName}} {{device}} receive",
+          "legendFormat": "{{instance}} {{device}} receive",
           "refId": "A"
         },
         {
           "expr": "irate(node_network_transmit_bytes_total[5m])",
           "format": "time_series",
           "interval": "",
-          "legendFormat": "{{friendlyName}} {{device}} transmit",
+          "legendFormat": "{{instance}} {{device}} transmit",
           "refId": "B"
         }
       ],
       "title": "Network Traffic",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "10.1.1.1": "Palo Alto Firewall",
+              "10.1.1.13": "Juniper EX2200 Switch",
+              "10.1.1.215": "Buffalo NAS",
+              "10.1.1.216": "Home Server",
+              "10.1.1.250": "Synology NAS (Primary)",
+              "10.1.1.251": "Prometheus Server",
+              "10.1.1.253": "Synology NAS (Backup)",
+              "10.1.1.251:9100": "Prometheus Server"
+            }
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -452,11 +560,38 @@
           "expr": "(1 - (node_filesystem_avail_bytes{fstype=~\"ext4|xfs\"} / node_filesystem_size_bytes{fstype=~\"ext4|xfs\"})) * 100",
           "format": "time_series",
           "interval": "",
-          "legendFormat": "{{friendlyName}} {{mountpoint}}",
+          "legendFormat": "{{instance}} {{mountpoint}}",
           "refId": "A"
         }
       ],
       "title": "Disk Space Usage %",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "10.1.1.1": "Palo Alto Firewall",
+              "10.1.1.13": "Juniper Switch",
+              "10.1.1.215": "Plex Media (Buffalo NAS)",
+              "10.1.1.216": "Plex Server (Ubuntu)",
+              "10.1.1.250": "NAS Boy (Synology Dev NAS)",
+              "10.1.1.251": "Prometheus Server",
+              "10.1.1.253": "Lil NAS (Synology PC Backups)",
+              "10.1.1.251:9100": "Prometheus Server"
+            }
+          }
+        }
+      ],
       "type": "timeseries"
     }
   ],
@@ -465,62 +600,7 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": [
-      {
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "prometheus",
-        "definition": "label_values(up{job=~\"node|buffalo-nas|juniper-ex2200|paloalto|synology-nas\"}, instance)",
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "instance",
-        "options": [],
-        "query": {
-          "query": "label_values(up{job=~\"node|buffalo-nas|juniper-ex2200|paloalto|synology-nas\"}, instance)",
-          "refId": "StandardVariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "prometheus",
-        "definition": "label_values(up{job=~\"node|buffalo-nas|juniper-ex2200|paloalto|synology-nas\"}, job)",
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "job",
-        "options": [],
-        "query": {
-          "query": "label_values(up{job=~\"node|buffalo-nas|juniper-ex2200|paloalto|synology-nas\"}, job)",
-          "refId": "StandardVariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "description": "Maps instance IPs to friendly names",
-        "hide": 2,
-        "name": "friendlyName",
-        "query": "10.1.1.1:Palo Alto Firewall;10.1.1.13:Juniper EX2200 Switch;10.1.1.215:Buffalo NAS;10.1.1.216:Home Server;10.1.1.250:Synology NAS (Primary);10.1.1.251:Prometheus Server;10.1.1.253:Synology NAS (Backup);10.1.1.251:9100:Prometheus Server",
-        "skipUrlSync": false,
-        "type": "constant"
-      }
-    ]
+    "list": []
   },
   "time": {
     "from": "now-6h",
@@ -528,7 +608,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Home Lab Monitoring (Friendly Names)",
+  "title": "Home Lab Monitoring (With Friendly Names)",
   "version": 1,
   "weekStart": ""
 }
