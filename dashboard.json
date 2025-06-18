@@ -22,6 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 21,
+  "links": [],
   "panels": [
     {
       "datasource": "prometheus",
@@ -62,7 +63,20 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "10.1.1.250:5001"
+            },
+            "properties": [
+              {
+                "id": "custom.displayName",
+                "value": "NAS-Boy"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 7,
@@ -117,7 +131,7 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 10,
+            "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -142,7 +156,6 @@
             }
           },
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -154,10 +167,17 @@
                 "value": 80
               }
             ]
-          },
-          "unit": "percent"
+          }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "192.168.1.10:9100"
+            },
+            "properties": []
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
@@ -248,7 +268,15 @@
           },
           "unit": "percent"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "192.168.1.10:9100"
+            },
+            "properties": []
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
@@ -525,5 +553,5 @@
   "timezone": "",
   "title": "Home Lab Monitoring",
   "uid": "aa5f0b7e-5e51-4c9d-8344-f1fb66e6d2fc",
-  "version": 6
+  "version": 14
 }
