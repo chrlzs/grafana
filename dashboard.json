@@ -22,7 +22,6 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 21,
-  "links": [],
   "panels": [
     {
       "datasource": "prometheus",
@@ -95,7 +94,7 @@
           "expr": "up{job=~\"node|buffalo-nas|juniper-ex2200|paloalto|synology-nas\"}",
           "format": "time_series",
           "interval": "",
-          "legendFormat": "{{friendlyName}}",
+          "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
@@ -183,10 +182,10 @@
       "pluginVersion": "12.0.1+security-01",
       "targets": [
         {
-          "expr": "100 - (avg by (instance, friendlyName) (irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
+          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
           "format": "time_series",
           "interval": "",
-          "legendFormat": "{{friendlyName}}",
+          "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
@@ -277,7 +276,7 @@
           "expr": "(node_memory_MemTotal_bytes - node_memory_MemFree_bytes - node_memory_Buffers_bytes - node_memory_Cached_bytes) / node_memory_MemTotal_bytes * 100",
           "format": "time_series",
           "interval": "",
-          "legendFormat": "{{friendlyName}}",
+          "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
@@ -367,14 +366,14 @@
           "expr": "irate(node_network_receive_bytes_total[5m])",
           "format": "time_series",
           "interval": "",
-          "legendFormat": "{{friendlyName}} {{device}} receive",
+          "legendFormat": "{{instance}} {{device}} receive",
           "refId": "A"
         },
         {
           "expr": "irate(node_network_transmit_bytes_total[5m])",
           "format": "time_series",
           "interval": "",
-          "legendFormat": "{{friendlyName}} {{device}} transmit",
+          "legendFormat": "{{instance}} {{device}} transmit",
           "refId": "B"
         }
       ],
@@ -464,7 +463,7 @@
           "expr": "(1 - (node_filesystem_avail_bytes{fstype=~\"ext4|xfs\"} / node_filesystem_size_bytes{fstype=~\"ext4|xfs\"})) * 100",
           "format": "time_series",
           "interval": "",
-          "legendFormat": "{{friendlyName}} {{mountpoint}}",
+          "legendFormat": "{{instance}} {{mountpoint}}",
           "refId": "A"
         }
       ],
@@ -510,25 +509,6 @@
         "options": [],
         "query": {
           "query": "label_values(up{job=~\"node|buffalo-nas|juniper-ex2200|paloalto|synology-nas\"}, job)",
-          "refId": "StandardVariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "type": "query"
-      },
-      {
-        "current": {
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "prometheus",
-        "definition": "label_values(up{job=~\"node|buffalo-nas|juniper-ex2200|paloalto|synology-nas\"}, friendlyName)",
-        "includeAll": true,
-        "multi": true,
-        "name": "friendlyName",
-        "options": [],
-        "query": {
-          "query": "label_values(up{job=~\"node|buffalo-nas|juniper-ex2200|paloalto|synology-nas\"}, friendlyName)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
