@@ -21,7 +21,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 21,
+  "id": 27,
   "links": [],
   "panels": [
     {
@@ -66,13 +66,85 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": "10.1.1.250:5001"
+              "id": "byName",
+              "options": "10.1.1.1"
             },
             "properties": [
               {
-                "id": "custom.displayName",
-                "value": "NAS-Boy"
+                "id": "displayName",
+                "value": "Palo Alto (Firewall)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "10.1.1.216:9100"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Plex (Ubuntu)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "10.1.1.215"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Media Storage (Buffalo)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "10.1.1.250"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NAS-Boy [Dev] (Synology)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "10.1.1.253"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Lil Nas [Backup] (Synology)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "10.1.1.251:9100"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Prometheus (Pi)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "10.1.1.13"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Switch (Juniper)"
               }
             ]
           }
@@ -172,10 +244,15 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": "192.168.1.10:9100"
+              "id": "byName",
+              "options": "10.1.1.250:5001"
             },
-            "properties": []
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NAS-Boy"
+              }
+            ]
           }
         ]
       },
@@ -553,5 +630,5 @@
   "timezone": "",
   "title": "Home Lab Monitoring",
   "uid": "aa5f0b7e-5e51-4c9d-8344-f1fb66e6d2fc",
-  "version": 14
+  "version": 7
 }
